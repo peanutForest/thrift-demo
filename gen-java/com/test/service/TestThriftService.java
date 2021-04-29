@@ -29,7 +29,7 @@ public class TestThriftService {
   }
 
   /**
-   * 同步、异步客户端
+   * 同步、异步客户端，开发Thrift客户端程序时使用
    * 客户端实现了Iface/AsyncIface接口，是Iface接口方法在客户端的存根实现
    */
   public static class Client extends org.apache.thrift.TServiceClient implements Iface {
@@ -186,6 +186,13 @@ public class TestThriftService {
 
   }
 
+  /**
+   * 同步、异步处理器，开发Thrift服务端程序时使用
+   * 内部的processMap保存了所有函数名到函数对象的映射，当Thrift服务端接到函数调用请求就从该map中根据函数名找到该函数的函数对象并执行
+   *
+   * 处理类TProcessor和传输层类TTransport、协议层类TProtocol构成Thrift框架的三大核心类
+   * @param <I>
+   */
   public static class Processor<I extends Iface> extends org.apache.thrift.TBaseProcessor<I> implements org.apache.thrift.TProcessor {
     private static final org.slf4j.Logger _LOGGER = org.slf4j.LoggerFactory.getLogger(Processor.class.getName());
     public Processor(I iface) {
@@ -393,6 +400,10 @@ public class TestThriftService {
 
   }
 
+  /**
+   * 参数类，为每个接口函数定义一个参数类，命名方式为"接口函数名_args"
+   * 参数类按照协议将调用的函数名和参数(参数名和参数值)进行封装
+   */
   public static class getStr_args implements org.apache.thrift.TBase<getStr_args, getStr_args._Fields>, java.io.Serializable, Cloneable, Comparable<getStr_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getStr_args");
 
@@ -483,10 +494,7 @@ public class TestThriftService {
     public getStr_args() {
     }
 
-    public getStr_args(
-      java.lang.String srcStr1,
-      java.lang.String srcStr2)
-    {
+    public getStr_args(java.lang.String srcStr1, java.lang.String srcStr2) {
       this();
       this.srcStr1 = srcStr1;
       this.srcStr2 = srcStr2;
@@ -862,6 +870,10 @@ public class TestThriftService {
       return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
     }
   }
+  /**
+   * 返回值类，为每个接口函数定义一个返回值类，命名方式为"接口函数名_args"
+   * 返回值类按照协议读取数据
+   */
   public static class getStr_result implements org.apache.thrift.TBase<getStr_result, getStr_result._Fields>, java.io.Serializable, Cloneable, Comparable<getStr_result>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getStr_result");
 
@@ -945,9 +957,7 @@ public class TestThriftService {
     public getStr_result() {
     }
 
-    public getStr_result(
-      com.test.service.thriftdatatype.ResultStr success)
-    {
+    public getStr_result(com.test.service.thriftdatatype.ResultStr success) {
       this();
       this.success = success;
     }
