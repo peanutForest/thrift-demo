@@ -21,12 +21,11 @@ public class ServerMain {
         TProcessor tProcessor = new TestThriftService.Processor<TestThriftService.Iface>(m_myService);
         TNonblockingServerSocket nioSocket = new TNonblockingServerSocket(m_thriftPort);
 
-        // 创建一个server需要socket连接、processor处理、transport传输、protocol协议
+        // 创建一个server需要socket连接、transport传输、protocol协议、processor处理
         TNonblockingServer.Args tnbArgs = new TNonblockingServer.Args(nioSocket);
-        tnbArgs.processor(tProcessor);
         tnbArgs.transportFactory(new TFramedTransport.Factory());
         tnbArgs.protocolFactory(new TBinaryProtocol.Factory());
-
+        tnbArgs.processor(tProcessor);
         m_server = new TNonblockingServer(tnbArgs);
     }
 

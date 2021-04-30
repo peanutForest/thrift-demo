@@ -1,23 +1,26 @@
 @startuml
+
 package "客户端" {
-    component [TServiceClient] as C
+    [TServiceClient] as C
     () "TProtocol" as C.TPt
     interface "TTransport" as C.TT
 
-    C.TT <-right-> Network
+    C.TT -up.> C.TPt
+    C.TPt -up.> C : 12.返回调用结果
     C -down-> C.TPt : 1.调用接口方法
-    note left of C.TPt: 2.将函数名和参数\n按照协议进行封装
-    C.TPt -do-> C.TT
-    note left of C.TT
+    C.TPt -down-> C.TT
+    Network .left.> C.TT
+    C.TT -right-> Network
+    note right of C.TPt: 2.将函数名和参数\n按照协议进行封装
+    note bottom of C.TT
         3.将协议层封装的结果进行处理后
         通过网络传输给Thrift服务器
         e.g. TFramedTransport将协议层
-        封装的数据封装成帧进行传输
+        封装的数据封装成帧进行传输:
+        | 4字节的帧长 | 帧内容 |
     end note
-    note bottom of C.TT : 10.接收调用结果数据进行逆向处理
-    C.TT -up.> C.TPt
-    note right of C.TPt : 11.将数据按照协议进行解封装\n并交付客户端
-    C.TPt -up.> C : 12.返回调用结果
+    note left of C.TT : 10.接收调用结果数据进行逆向处理
+    note left of C.TPt : 11.将数据按照协议进行解封装\n并交付客户端
 }
 cloud Network {
 }
@@ -28,16 +31,17 @@ package "服务端" {
     interface "TTransport" as S.TT
     () "TProtocol" as S.TPt
 
-    Network <-right-> S.TT
+    S.TT .right.> Network
+    Network -left-> S.TT
     S.TT -up-> S.TPt
-    note bottom of S.TT : 4.接收调用请求数据进行逆向处理
-    S.TPt -u-> S.TPc
-    note left of S.TPt : 5.将封装的调用的函数名和参数\n按照协议解封装
-    note right of S.TPc : 6.根据函数名找到对应的函数对象
+    S.TPt -up-> S.TPc
     S.TPc -> S.TPc : 7.调用函数
     S.TPc -down.> S.TPt
-    note right of S.TPt : 8.将函数调用结果按协议进行封装
     S.TPt -down.> S.TT
+    note bottom of S.TT : 4.接收调用请求数据进行逆向处理
+    note left of S.TPt : 5.将封装的调用的函数名和参数\n按照协议解封装
+    note left of S.TPc : 6.根据函数名找到对应的函数对象
+    note right of S.TPt : 8.将函数调用结果按协议进行封装
     note right of S.TT : 9.对协议层封装结果进行处理(如封装成帧)\n然后进行传输
 }
 @enduml

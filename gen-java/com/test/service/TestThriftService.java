@@ -29,8 +29,9 @@ public class TestThriftService {
   }
 
   /**
-   * 同步、异步客户端，开发Thrift客户端程序时使用
+   * 同步、异步客户端，开发Thrift<b>客户端</b>程序时使用
    * 客户端实现了Iface/AsyncIface接口，是Iface接口方法在客户端的存根实现
+   * 调用接口方法(getStr)时会创建方法对应的参数类(getStr_args)以按照协议对数据进行封装
    */
   public static class Client extends org.apache.thrift.TServiceClient implements Iface {
     public static class Factory implements org.apache.thrift.TServiceClientFactory<Client> {
@@ -52,23 +53,37 @@ public class TestThriftService {
       super(iprot, oprot);
     }
 
+    // 客户端调用本地存根函数，在此之前需要先打开socket：m_transport.open()
     public com.test.service.thriftdatatype.ResultStr getStr(java.lang.String srcStr1, java.lang.String srcStr2) throws org.apache.thrift.TException
     {
+      // 发送调用请求
       send_getStr(srcStr1, srcStr2);
+      // 返回调用结果
       return recv_getStr();
     }
 
     public void send_getStr(java.lang.String srcStr1, java.lang.String srcStr2) throws org.apache.thrift.TException
     {
+      // 将参数存储到参数类对象getStr_args中
       getStr_args args = new getStr_args();
       args.setSrcStr1(srcStr1);
       args.setSrcStr2(srcStr2);
+      // sendBase将函数名和参数对象发送到服务端
+      // sendBase继承自TServiceClient，作用如下
+      // 1、会调用协议类的writeMessageBegin(TMessage)方法，将首部信息(消息名称即调用函数名、消息类型、消息序列号)写入协议类内部的TFramedTransport的buffer中
+      // 2、调用args.write(TProtocol)方法(继承自TBase)将参数写入TFramedTransport的buffer中
+      // 3、调用TFramedTransport的flush方法将buffer中存放的消息发送出去(先计算buffer中数据长度，再将长度+数据内容封装成帧发送)
       sendBase("getStr", args);
     }
 
     public com.test.service.thriftdatatype.ResultStr recv_getStr() throws org.apache.thrift.TException
     {
+      // 为调用结果创建一个返回值对象
       getStr_result result = new getStr_result();
+      // 等待Thrift服务端返回结果，该方法作用如下：
+      // 1、调用协议层的readMessageBegin方法读取消息的首部
+      // 2、使用result对象的read(TProtocol)方法(继承自TBase)读取返回结果的内容
+      // 3、调用协议层的readMessageEnd方法结束读取操作
       receiveBase(result, "getStr");
       if (result.isSetSuccess()) {
         return result.success;
@@ -186,9 +201,26 @@ public class TestThriftService {
 
   }
 
+  /** --------------------------- */
+
   /**
-   * 同步、异步处理器，开发Thrift服务端程序时使用
-   * 内部的processMap保存了所有函数名到函数对象的映射，当Thrift服务端接到函数调用请求就从该map中根据函数名找到该函数的函数对象并执行
+   * Processor就相当于服务端，其操作与Client都是反着来的
+   * args参数类对象 和 result返回值对象都实现了TBase接口，都实现了read(TProtocol)和write(TProtocol)方法
+   * Client: args.write 参数写入发送到服务端 -> result.read 返回值读取
+   * Processor: args.read 参数读取 -> result.write 返回值写入发送到客户端
+   */
+
+  /** --------------------------- */
+
+  /**
+   * 同步、异步处理器，开发Thrift<b>服务端</b>程序时使用，主要完成函数名->函数对象的映射
+   * 内部的processMap保存了所有函数名到函数对象的映射，当Thrift服务端接到函数调用请求就从该map中根据函数名找到对应的函数对象，并使用客户端请求的参数调用该函数对象
+   * Thrift框架中，每个接口都有一个函数对象与之对应，函数对象继承自ProcessFunction，其作用如下：
+   * 1、ProcessFunction内实现了process方法，用于服务端的读写：
+   *    (1) 调用args.read(TProtocol)方法(继承自TBase)通过协议层从传输层中读取并解析出调用参数
+   *    (2) 调用具体实现类提供的getResult方法计算出结果
+   *    (3) 调用协议类的writeMessageBegin(TMessage)写入协议层首部，再调用result.write(TProtocol)方法(继承自TBase)将结果写入buffer，最后由传输类flush发送给客户端
+   * 2、ProcessFunction内的getResult方法由具体的实现类提供
    *
    * 处理类TProcessor和传输层类TTransport、协议层类TProtocol构成Thrift框架的三大核心类
    * @param <I>
@@ -400,8 +432,10 @@ public class TestThriftService {
 
   }
 
+  /** --------------------------- */
+
   /**
-   * 参数类，为每个接口函数定义一个参数类，命名方式为"接口函数名_args"
+   * 参数类，为每个接口函数定义一个参数类，命名方式为"接口函数名_args"。实现TBase接口
    * 参数类按照协议将调用的函数名和参数(参数名和参数值)进行封装
    */
   public static class getStr_args implements org.apache.thrift.TBase<getStr_args, getStr_args._Fields>, java.io.Serializable, Cloneable, Comparable<getStr_args>   {
@@ -871,7 +905,7 @@ public class TestThriftService {
     }
   }
   /**
-   * 返回值类，为每个接口函数定义一个返回值类，命名方式为"接口函数名_args"
+   * 返回值类，为每个接口函数定义一个返回值类，命名方式为"接口函数名_args"。实现TBase接口
    * 返回值类按照协议读取数据
    */
   public static class getStr_result implements org.apache.thrift.TBase<getStr_result, getStr_result._Fields>, java.io.Serializable, Cloneable, Comparable<getStr_result>   {
