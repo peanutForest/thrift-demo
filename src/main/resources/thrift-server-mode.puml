@@ -1,0 +1,112 @@
+@startuml
+package TSimpleServer {
+    start
+    :单工作线程\n     开始;
+    note left
+        循环监听新请求并
+        完成对请求的处理
+        阻塞IO，一次只能
+        接收和处理一个
+        socket连接
+    end note
+    :启动**监听socket**;
+    while (停止工作？) is (\n否)
+        :accept一个业务socket;
+        :完成业务socket的RPC调用请求;
+    endwhile (是   )
+    -[dotted]->
+    :结束;
+    end
+}
+package TNonblockingServer {
+    start
+    :单工作线程\n     开始;
+    :注册**监听socket**到**selector**;
+    note left
+        所有socket都注册到selector
+    end note
+    while (停止工作？) is (\n否)
+        :selector循环监控是否有已就绪socket;
+        note left
+            IO多路复用，采用非阻塞IO
+            同时监控多个socket的状态变化
+            但依然是单线程
+        end note
+        while (就绪socket已处理完？) is (\n否)
+            :取出一个就绪socket;
+            if (就绪socket需要accept？) then (\n是)
+                :accept新socket并将其注册到selector;
+            elseif (就绪socket需要读取数据？) then (\n是)
+                :1.完成数据读取\n2.完成业务处理;
+            elseif (就绪socket需要写入数据？) then (\n是)
+                :完成数据写入操作;
+            else (否)
+            :输出一条错误log;
+            endif
+        endwhile (是)
+        -[dotted]->
+    endwhile (是)
+    -[dotted]->
+    :结束;
+    end
+}
+package THsHaServer {
+    start
+    :单工作线程\n     开始;
+    note left
+        是TNnoblockingServer的子类
+        依然是单线程完成所有socket监听与数据读写
+        但引入一个线程池专门进行业务处理
+    end note
+    :注册**监听socket**到**selector**;
+    note left
+        所有socket都注册到selector
+    end note
+    while (停止工作？) is (\n否)
+            :selector循环监控是否有已就绪socket;
+            note left
+                IO多路复用，采用非阻塞IO
+                同时监控多个socket的状态变化
+                但依然是单线程
+            end note
+            while (就绪socket已处理完？) is (\n否)
+                :取出一个就绪socket;
+                if (就绪socket需要accept？) then (\n是)
+                    :accept新socket并将其注册到selector;
+                elseif (就绪socket需要读取数据？) then (\n是)
+                    :1.完成数据读取;
+                    :2.交由任务线程池完成业务处理\n即根据函数名和参数调用Thrift函数;
+                elseif (就绪socket需要写入数据？) then (\n是)
+                    :完成数据写入操作;
+                else (否)
+                    :输出一条错误log;
+                endif
+            endwhile (是)
+            -[dotted]->
+    endwhile (是)
+    -[dotted]->
+    :结束;
+    end
+}
+package TThreadPoolServer {
+        start
+        :单工作线程\n    开始;
+        :启动**监听socket**;
+        while (停止工作？) is (\n否)
+            :accept一个业务socket;
+            :将新业务socket封装成一个任务交给线程池;
+            if () then ( )
+                partition 业务线程池 {
+                    :从业务socket中读取调用请求;
+                    :调用具体函数完成处理;
+                    :将调用结果返回客户端;
+                    kill
+                }
+            else ( )
+            endif
+        endwhile (是)
+        -[dotted]->
+        :结束;
+        end
+}
+@enduml

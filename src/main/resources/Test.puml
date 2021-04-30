@@ -1,0 +1,15 @@
+@startuml
+partition hello {
+    start
+    :单工作线程\n    开始;
+    :启动**监听socket**;
+    while (停止工作？) is (否)
+        :accept一个业务socket;
+        :将新业务socket封装成一个任务交给线程池;
+        (a)
+    endwhile (是)
+    -[dotted]->
+    :结束;
+    end
+}
+@enduml
