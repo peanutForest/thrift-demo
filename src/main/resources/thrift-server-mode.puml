@@ -36,6 +36,7 @@ package TNonblockingServer {
             :取出一个就绪socket;
             if (就绪socket需要accept？) then (\n是)
                 :accept新socket并将其注册到selector;
+
             elseif (就绪socket需要读取数据？) then (\n是)
                 :1.完成数据读取\n2.完成业务处理;
             elseif (就绪socket需要写入数据？) then (\n是)
@@ -89,24 +90,72 @@ package THsHaServer {
     end
 }
 package TThreadPoolServer {
+    partition 主线程 {
         start
         :单工作线程\n    开始;
         :启动**监听socket**;
         while (停止工作？) is (\n否)
             :accept一个业务socket;
             :将新业务socket封装成一个任务交给线程池;
-            if () then ( )
-                partition 业务线程池 {
-                    :从业务socket中读取调用请求;
-                    :调用具体函数完成处理;
-                    :将调用结果返回客户端;
-                    kill
-                }
-            else ( )
-            endif
+            fork
+                :业务线程池;
+                detach
+            endfork
         endwhile (是)
         -[dotted]->
         :结束;
         end
+    }
+    partition 业务线程池 {
+        :业务socket任务;
+        :从业务socket中读取调用请求;
+        :调用具体函数完成处理;
+        :将调用结果返回客户端;
+        kill
+    }
+    note left
+        数据读取和业务处理都交由线程池完成
+        主线程只负责监听新socket连接
+        新连接能够及时接受
+        但同时处理能力受限于线程池的能力
+    end note
+}
+package TThreadedSelectorServer {
+    start
+    :**监听socket**;
+    -> 新socket连接;
+    :AcceptThread;
+    note left
+        专门用于处理新连接
+    end note
+    :SelectorThreadLoadBalancer;
+    note left
+        负载均衡器对象
+        当AcceptThread接受新socket连接时
+        由它决定将新请求分配给哪个SelectorThread
+    end note
+    note left
+        多个SelectorThread对象
+        专门处理业务socket
+        的网络I/O操作
+    end note
+    split
+        :SelectorThread-0;
+    split again
+        :SelectorThread-1;
+    split again
+        :...;
+    split again
+        :SelectorThread-N;
+    end split
+    -> 读取业务socket的数据之后
+    交给业务线程池处理;
+    :ExecutorService业务处理线程池;
+    note left
+        SelectorThread线程监听到socket中
+        有调用请求过来时，读取请求之后
+        交给ExecutorService线程池中
+        的线程来完成此次调用的具体执行
+    end note
 }
 @enduml
