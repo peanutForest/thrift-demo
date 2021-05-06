@@ -504,7 +504,6 @@ public class TestThriftService {
       return new getStr_args(this);
     }
 
-    @Override
     public void clear() {
       this.srcStr1 = null;
       this.srcStr2 = null;
@@ -658,7 +657,6 @@ public class TestThriftService {
       return hashCode;
     }
 
-    @Override
     public int compareTo(getStr_args other) {
       if (!getClass().equals(other.getClass())) {
         return getClass().getName().compareTo(other.getClass().getName());
@@ -820,7 +818,6 @@ public class TestThriftService {
 
     private static class getStr_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<getStr_args> {
 
-      @Override
       public void write(org.apache.thrift.protocol.TProtocol prot, getStr_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet optionals = new java.util.BitSet();
@@ -839,7 +836,6 @@ public class TestThriftService {
         }
       }
 
-      @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, getStr_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(2);
@@ -962,7 +958,6 @@ public class TestThriftService {
       return new getStr_result(this);
     }
 
-    @Override
     public void clear() {
       this.success = null;
     }
@@ -1064,7 +1059,6 @@ public class TestThriftService {
       return hashCode;
     }
 
-    @Override
     public int compareTo(getStr_result other) {
       if (!getClass().equals(other.getClass())) {
         return getClass().getName().compareTo(other.getClass().getName());
@@ -1199,7 +1193,6 @@ public class TestThriftService {
 
     private static class getStr_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<getStr_result> {
 
-      @Override
       public void write(org.apache.thrift.protocol.TProtocol prot, getStr_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet optionals = new java.util.BitSet();
@@ -1212,7 +1205,6 @@ public class TestThriftService {
         }
       }
 
-      @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, getStr_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
@@ -1334,7 +1326,6 @@ public class TestThriftService {
       return new getInt_args(this);
     }
 
-    @Override
     public void clear() {
       setValIsSet(false);
       this.val = 0;
@@ -1433,7 +1424,6 @@ public class TestThriftService {
       return hashCode;
     }
 
-    @Override
     public int compareTo(getInt_args other) {
       if (!getClass().equals(other.getClass())) {
         return getClass().getName().compareTo(other.getClass().getName());
@@ -1560,7 +1550,6 @@ public class TestThriftService {
 
     private static class getInt_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<getInt_args> {
 
-      @Override
       public void write(org.apache.thrift.protocol.TProtocol prot, getInt_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet optionals = new java.util.BitSet();
@@ -1573,7 +1562,6 @@ public class TestThriftService {
         }
       }
 
-      @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, getInt_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
@@ -1692,7 +1680,6 @@ public class TestThriftService {
       return new getInt_result(this);
     }
 
-    @Override
     public void clear() {
       this.success = null;
     }
@@ -1794,7 +1781,6 @@ public class TestThriftService {
       return hashCode;
     }
 
-    @Override
     public int compareTo(getInt_result other) {
       if (!getClass().equals(other.getClass())) {
         return getClass().getName().compareTo(other.getClass().getName());
@@ -1929,7 +1915,6 @@ public class TestThriftService {
 
     private static class getInt_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<getInt_result> {
 
-      @Override
       public void write(org.apache.thrift.protocol.TProtocol prot, getInt_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet optionals = new java.util.BitSet();
@@ -1942,7 +1927,6 @@ public class TestThriftService {
         }
       }
 
-      @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, getInt_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
