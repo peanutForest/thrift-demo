@@ -4,7 +4,7 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-package org.example.thrift.learn.server.thriftdatatype;
+package org.example.thrift.learning.client.thriftdatatype;
 
 @SuppressWarnings({"cast", "rawtypes", "serial", "unchecked", "unused"})
 public class thrift_datatypeConstants {

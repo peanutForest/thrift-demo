@@ -4,7 +4,7 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-package org.example.thrift.learn.server;
+package org.example.thrift.learning.client;
 
 import org.apache.thrift.TApplicationException;
 import org.apache.thrift.TBase;
@@ -15,17 +15,17 @@ public class TestThriftService {
 
   public interface Iface {
 
-    public org.example.thrift.learn.client.thriftdatatype.ResultStr getStr(String srcStr1, String srcStr2) throws org.apache.thrift.TException;
+    public org.example.thrift.learning.client.thriftdatatype.ResultStr getStr(String srcStr1, String srcStr2) throws org.apache.thrift.TException;
 
-    public org.example.thrift.learn.client.thriftdatatype.ResultInt getInt(int val) throws org.apache.thrift.TException;
+    public org.example.thrift.learning.client.thriftdatatype.ResultInt getInt(int val) throws org.apache.thrift.TException;
 
   }
 
   public interface AsyncIface {
 
-    public void getStr(String srcStr1, String srcStr2, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learn.client.thriftdatatype.ResultStr> resultHandler) throws org.apache.thrift.TException;
+    public void getStr(String srcStr1, String srcStr2, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learning.client.thriftdatatype.ResultStr> resultHandler) throws org.apache.thrift.TException;
 
-    public void getInt(int val, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learn.client.thriftdatatype.ResultInt> resultHandler) throws org.apache.thrift.TException;
+    public void getInt(int val, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learning.client.thriftdatatype.ResultInt> resultHandler) throws org.apache.thrift.TException;
 
   }
 
@@ -49,7 +49,7 @@ public class TestThriftService {
       super(iprot, oprot);
     }
 
-    public org.example.thrift.learn.client.thriftdatatype.ResultStr getStr(String srcStr1, String srcStr2) throws org.apache.thrift.TException
+    public org.example.thrift.learning.client.thriftdatatype.ResultStr getStr(String srcStr1, String srcStr2) throws org.apache.thrift.TException
     {
       send_getStr(srcStr1, srcStr2);
       return recv_getStr();
@@ -63,7 +63,7 @@ public class TestThriftService {
       sendBase("getStr", args);
     }
 
-    public org.example.thrift.learn.client.thriftdatatype.ResultStr recv_getStr() throws org.apache.thrift.TException
+    public org.example.thrift.learning.client.thriftdatatype.ResultStr recv_getStr() throws org.apache.thrift.TException
     {
       getStr_result result = new getStr_result();
       receiveBase(result, "getStr");
@@ -73,7 +73,7 @@ public class TestThriftService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getStr failed: unknown result");
     }
 
-    public org.example.thrift.learn.client.thriftdatatype.ResultInt getInt(int val) throws org.apache.thrift.TException
+    public org.example.thrift.learning.client.thriftdatatype.ResultInt getInt(int val) throws org.apache.thrift.TException
     {
       send_getInt(val);
       return recv_getInt();
@@ -86,7 +86,7 @@ public class TestThriftService {
       sendBase("getInt", args);
     }
 
-    public org.example.thrift.learn.client.thriftdatatype.ResultInt recv_getInt() throws org.apache.thrift.TException
+    public org.example.thrift.learning.client.thriftdatatype.ResultInt recv_getInt() throws org.apache.thrift.TException
     {
       getInt_result result = new getInt_result();
       receiveBase(result, "getInt");
@@ -114,17 +114,17 @@ public class TestThriftService {
       super(protocolFactory, clientManager, transport);
     }
 
-    public void getStr(String srcStr1, String srcStr2, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learn.client.thriftdatatype.ResultStr> resultHandler) throws org.apache.thrift.TException {
+    public void getStr(String srcStr1, String srcStr2, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learning.client.thriftdatatype.ResultStr> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getStr_call method_call = new getStr_call(srcStr1, srcStr2, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getStr_call extends org.apache.thrift.async.TAsyncMethodCall<org.example.thrift.learn.client.thriftdatatype.ResultStr> {
+    public static class getStr_call extends org.apache.thrift.async.TAsyncMethodCall<org.example.thrift.learning.client.thriftdatatype.ResultStr> {
       private String srcStr1;
       private String srcStr2;
-      public getStr_call(String srcStr1, String srcStr2, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learn.client.thriftdatatype.ResultStr> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public getStr_call(String srcStr1, String srcStr2, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learning.client.thriftdatatype.ResultStr> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.srcStr1 = srcStr1;
         this.srcStr2 = srcStr2;
@@ -139,7 +139,7 @@ public class TestThriftService {
         prot.writeMessageEnd();
       }
 
-      public org.example.thrift.learn.client.thriftdatatype.ResultStr getResult() throws org.apache.thrift.TException {
+      public org.example.thrift.learning.client.thriftdatatype.ResultStr getResult() throws org.apache.thrift.TException {
         if (getState() != State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
@@ -149,16 +149,16 @@ public class TestThriftService {
       }
     }
 
-    public void getInt(int val, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learn.client.thriftdatatype.ResultInt> resultHandler) throws org.apache.thrift.TException {
+    public void getInt(int val, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learning.client.thriftdatatype.ResultInt> resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getInt_call method_call = new getInt_call(val, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getInt_call extends org.apache.thrift.async.TAsyncMethodCall<org.example.thrift.learn.client.thriftdatatype.ResultInt> {
+    public static class getInt_call extends org.apache.thrift.async.TAsyncMethodCall<org.example.thrift.learning.client.thriftdatatype.ResultInt> {
       private int val;
-      public getInt_call(int val, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learn.client.thriftdatatype.ResultInt> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public getInt_call(int val, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learning.client.thriftdatatype.ResultInt> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.val = val;
       }
@@ -171,7 +171,7 @@ public class TestThriftService {
         prot.writeMessageEnd();
       }
 
-      public org.example.thrift.learn.client.thriftdatatype.ResultInt getResult() throws org.apache.thrift.TException {
+      public org.example.thrift.learning.client.thriftdatatype.ResultInt getResult() throws org.apache.thrift.TException {
         if (getState() != State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
@@ -265,7 +265,7 @@ public class TestThriftService {
       return processMap;
     }
 
-    public static class getStr<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getStr_args, org.example.thrift.learn.client.thriftdatatype.ResultStr> {
+    public static class getStr<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getStr_args, org.example.thrift.learning.client.thriftdatatype.ResultStr> {
       public getStr() {
         super("getStr");
       }
@@ -274,10 +274,10 @@ public class TestThriftService {
         return new getStr_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learn.client.thriftdatatype.ResultStr> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learning.client.thriftdatatype.ResultStr> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learn.client.thriftdatatype.ResultStr>() {
-          public void onComplete(org.example.thrift.learn.client.thriftdatatype.ResultStr o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learning.client.thriftdatatype.ResultStr>() {
+          public void onComplete(org.example.thrift.learning.client.thriftdatatype.ResultStr o) {
             getStr_result result = new getStr_result();
             result.success = o;
             try {
@@ -321,12 +321,12 @@ public class TestThriftService {
         return false;
       }
 
-      public void start(I iface, getStr_args args, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learn.client.thriftdatatype.ResultStr> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, getStr_args args, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learning.client.thriftdatatype.ResultStr> resultHandler) throws org.apache.thrift.TException {
         iface.getStr(args.srcStr1, args.srcStr2,resultHandler);
       }
     }
 
-    public static class getInt<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getInt_args, org.example.thrift.learn.client.thriftdatatype.ResultInt> {
+    public static class getInt<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getInt_args, org.example.thrift.learning.client.thriftdatatype.ResultInt> {
       public getInt() {
         super("getInt");
       }
@@ -335,10 +335,10 @@ public class TestThriftService {
         return new getInt_args();
       }
 
-      public org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learn.client.thriftdatatype.ResultInt> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+      public org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learning.client.thriftdatatype.ResultInt> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learn.client.thriftdatatype.ResultInt>() {
-          public void onComplete(org.example.thrift.learn.client.thriftdatatype.ResultInt o) {
+        return new org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learning.client.thriftdatatype.ResultInt>() {
+          public void onComplete(org.example.thrift.learning.client.thriftdatatype.ResultInt o) {
             getInt_result result = new getInt_result();
             result.success = o;
             try {
@@ -382,7 +382,7 @@ public class TestThriftService {
         return false;
       }
 
-      public void start(I iface, getInt_args args, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learn.client.thriftdatatype.ResultInt> resultHandler) throws org.apache.thrift.TException {
+      public void start(I iface, getInt_args args, org.apache.thrift.async.AsyncMethodCallback<org.example.thrift.learning.client.thriftdatatype.ResultInt> resultHandler) throws org.apache.thrift.TException {
         iface.getInt(args.val,resultHandler);
       }
     }
@@ -398,8 +398,8 @@ public class TestThriftService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getStr_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getStr_argsTupleSchemeFactory();
 
-    public  String srcStr1; // required
-    public  String srcStr2; // required
+    public String srcStr1; // required
+    public String srcStr2; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -504,7 +504,6 @@ public class TestThriftService {
       return new getStr_args(this);
     }
 
-    @Override
     public void clear() {
       this.srcStr1 = null;
       this.srcStr2 = null;
@@ -515,7 +514,7 @@ public class TestThriftService {
       return this.srcStr1;
     }
 
-    public getStr_args setSrcStr1( String srcStr1) {
+    public getStr_args setSrcStr1(String srcStr1) {
       this.srcStr1 = srcStr1;
       return this;
     }
@@ -540,7 +539,7 @@ public class TestThriftService {
       return this.srcStr2;
     }
 
-    public getStr_args setSrcStr2( String srcStr2) {
+    public getStr_args setSrcStr2(String srcStr2) {
       this.srcStr2 = srcStr2;
       return this;
     }
@@ -560,7 +559,7 @@ public class TestThriftService {
       }
     }
 
-    public void setFieldValue(_Fields field,  Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SRC_STR1:
         if (value == null) {
@@ -658,7 +657,6 @@ public class TestThriftService {
       return hashCode;
     }
 
-    @Override
     public int compareTo(getStr_args other) {
       if (!getClass().equals(other.getClass())) {
         return getClass().getName().compareTo(other.getClass().getName());
@@ -820,7 +818,6 @@ public class TestThriftService {
 
     private static class getStr_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<getStr_args> {
 
-      @Override
       public void write(org.apache.thrift.protocol.TProtocol prot, getStr_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet optionals = new java.util.BitSet();
@@ -839,7 +836,6 @@ public class TestThriftService {
         }
       }
 
-      @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, getStr_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(2);
@@ -867,7 +863,7 @@ public class TestThriftService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getStr_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getStr_resultTupleSchemeFactory();
 
-    public  org.example.thrift.learn.client.thriftdatatype.ResultStr success; // required
+    public org.example.thrift.learning.client.thriftdatatype.ResultStr success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -934,7 +930,7 @@ public class TestThriftService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, org.example.thrift.learn.client.thriftdatatype.ResultStr.class)));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, org.example.thrift.learning.client.thriftdatatype.ResultStr.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getStr_result.class, metaDataMap);
     }
@@ -943,7 +939,7 @@ public class TestThriftService {
     }
 
     public getStr_result(
-      org.example.thrift.learn.client.thriftdatatype.ResultStr success)
+      org.example.thrift.learning.client.thriftdatatype.ResultStr success)
     {
       this();
       this.success = success;
@@ -954,7 +950,7 @@ public class TestThriftService {
      */
     public getStr_result(getStr_result other) {
       if (other.isSetSuccess()) {
-        this.success = new org.example.thrift.learn.client.thriftdatatype.ResultStr(other.success);
+        this.success = new org.example.thrift.learning.client.thriftdatatype.ResultStr(other.success);
       }
     }
 
@@ -962,17 +958,16 @@ public class TestThriftService {
       return new getStr_result(this);
     }
 
-    @Override
     public void clear() {
       this.success = null;
     }
 
 
-    public org.example.thrift.learn.client.thriftdatatype.ResultStr getSuccess() {
+    public org.example.thrift.learning.client.thriftdatatype.ResultStr getSuccess() {
       return this.success;
     }
 
-    public getStr_result setSuccess( org.example.thrift.learn.client.thriftdatatype.ResultStr success) {
+    public getStr_result setSuccess(org.example.thrift.learning.client.thriftdatatype.ResultStr success) {
       this.success = success;
       return this;
     }
@@ -992,13 +987,13 @@ public class TestThriftService {
       }
     }
 
-    public void setFieldValue(_Fields field,  Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((org.example.thrift.learn.client.thriftdatatype.ResultStr)value);
+          setSuccess((org.example.thrift.learning.client.thriftdatatype.ResultStr)value);
         }
         break;
 
@@ -1064,7 +1059,6 @@ public class TestThriftService {
       return hashCode;
     }
 
-    @Override
     public int compareTo(getStr_result other) {
       if (!getClass().equals(other.getClass())) {
         return getClass().getName().compareTo(other.getClass().getName());
@@ -1158,7 +1152,7 @@ public class TestThriftService {
           switch (schemeField.id) {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.success = new org.example.thrift.learn.client.thriftdatatype.ResultStr();
+                struct.success = new org.example.thrift.learning.client.thriftdatatype.ResultStr();
                 struct.success.read(iprot);
                 struct.setSuccessIsSet(true);
               } else { 
@@ -1199,7 +1193,6 @@ public class TestThriftService {
 
     private static class getStr_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<getStr_result> {
 
-      @Override
       public void write(org.apache.thrift.protocol.TProtocol prot, getStr_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet optionals = new java.util.BitSet();
@@ -1212,12 +1205,11 @@ public class TestThriftService {
         }
       }
 
-      @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, getStr_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.success = new org.example.thrift.learn.client.thriftdatatype.ResultStr();
+          struct.success = new org.example.thrift.learning.client.thriftdatatype.ResultStr();
           struct.success.read(iprot);
           struct.setSuccessIsSet(true);
         }
@@ -1334,7 +1326,6 @@ public class TestThriftService {
       return new getInt_args(this);
     }
 
-    @Override
     public void clear() {
       setValIsSet(false);
       this.val = 0;
@@ -1363,7 +1354,7 @@ public class TestThriftService {
       __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __VAL_ISSET_ID, value);
     }
 
-    public void setFieldValue(_Fields field,  Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case VAL:
         if (value == null) {
@@ -1433,7 +1424,6 @@ public class TestThriftService {
       return hashCode;
     }
 
-    @Override
     public int compareTo(getInt_args other) {
       if (!getClass().equals(other.getClass())) {
         return getClass().getName().compareTo(other.getClass().getName());
@@ -1560,7 +1550,6 @@ public class TestThriftService {
 
     private static class getInt_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<getInt_args> {
 
-      @Override
       public void write(org.apache.thrift.protocol.TProtocol prot, getInt_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet optionals = new java.util.BitSet();
@@ -1573,7 +1562,6 @@ public class TestThriftService {
         }
       }
 
-      @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, getInt_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
@@ -1597,7 +1585,7 @@ public class TestThriftService {
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getInt_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getInt_resultTupleSchemeFactory();
 
-    public  org.example.thrift.learn.client.thriftdatatype.ResultInt success; // required
+    public org.example.thrift.learning.client.thriftdatatype.ResultInt success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -1664,7 +1652,7 @@ public class TestThriftService {
     static {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, org.example.thrift.learn.client.thriftdatatype.ResultInt.class)));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, org.example.thrift.learning.client.thriftdatatype.ResultInt.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getInt_result.class, metaDataMap);
     }
@@ -1673,7 +1661,7 @@ public class TestThriftService {
     }
 
     public getInt_result(
-      org.example.thrift.learn.client.thriftdatatype.ResultInt success)
+      org.example.thrift.learning.client.thriftdatatype.ResultInt success)
     {
       this();
       this.success = success;
@@ -1684,7 +1672,7 @@ public class TestThriftService {
      */
     public getInt_result(getInt_result other) {
       if (other.isSetSuccess()) {
-        this.success = new org.example.thrift.learn.client.thriftdatatype.ResultInt(other.success);
+        this.success = new org.example.thrift.learning.client.thriftdatatype.ResultInt(other.success);
       }
     }
 
@@ -1692,17 +1680,16 @@ public class TestThriftService {
       return new getInt_result(this);
     }
 
-    @Override
     public void clear() {
       this.success = null;
     }
 
 
-    public org.example.thrift.learn.client.thriftdatatype.ResultInt getSuccess() {
+    public org.example.thrift.learning.client.thriftdatatype.ResultInt getSuccess() {
       return this.success;
     }
 
-    public getInt_result setSuccess( org.example.thrift.learn.client.thriftdatatype.ResultInt success) {
+    public getInt_result setSuccess(org.example.thrift.learning.client.thriftdatatype.ResultInt success) {
       this.success = success;
       return this;
     }
@@ -1722,13 +1709,13 @@ public class TestThriftService {
       }
     }
 
-    public void setFieldValue(_Fields field,  Object value) {
+    public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((org.example.thrift.learn.client.thriftdatatype.ResultInt)value);
+          setSuccess((org.example.thrift.learning.client.thriftdatatype.ResultInt)value);
         }
         break;
 
@@ -1794,7 +1781,6 @@ public class TestThriftService {
       return hashCode;
     }
 
-    @Override
     public int compareTo(getInt_result other) {
       if (!getClass().equals(other.getClass())) {
         return getClass().getName().compareTo(other.getClass().getName());
@@ -1888,7 +1874,7 @@ public class TestThriftService {
           switch (schemeField.id) {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.success = new org.example.thrift.learn.client.thriftdatatype.ResultInt();
+                struct.success = new org.example.thrift.learning.client.thriftdatatype.ResultInt();
                 struct.success.read(iprot);
                 struct.setSuccessIsSet(true);
               } else { 
@@ -1929,7 +1915,6 @@ public class TestThriftService {
 
     private static class getInt_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<getInt_result> {
 
-      @Override
       public void write(org.apache.thrift.protocol.TProtocol prot, getInt_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet optionals = new java.util.BitSet();
@@ -1942,12 +1927,11 @@ public class TestThriftService {
         }
       }
 
-      @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, getInt_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.success = new org.example.thrift.learn.client.thriftdatatype.ResultInt();
+          struct.success = new org.example.thrift.learning.client.thriftdatatype.ResultInt();
           struct.success.read(iprot);
           struct.setSuccessIsSet(true);
         }

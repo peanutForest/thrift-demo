@@ -1,4 +1,4 @@
-package org.example.thrift.learn.client;
+package org.example.thrift.learning.client;
 
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
@@ -6,8 +6,8 @@ import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
-import org.example.thrift.learn.client.thriftdatatype.ResultInt;
-import org.example.thrift.learn.client.thriftdatatype.ResultStr;
+import org.example.thrift.learning.client.thriftdatatype.ResultInt;
+import org.example.thrift.learning.client.thriftdatatype.ResultStr;
 
 public class ClientMain {
     private static TTransport m_transport;

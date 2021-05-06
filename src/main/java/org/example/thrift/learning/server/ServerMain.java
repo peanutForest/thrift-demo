@@ -1,4 +1,4 @@
-package org.example.thrift.learn.server;
+package org.example.thrift.learning.server;
 
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;

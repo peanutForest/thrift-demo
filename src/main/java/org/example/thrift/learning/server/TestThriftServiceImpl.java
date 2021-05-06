@@ -1,9 +1,9 @@
-package org.example.thrift.learn.server;
+package org.example.thrift.learning.server;
 
 import org.apache.thrift.TException;
-import org.example.thrift.learn.client.thriftdatatype.ResultInt;
-import org.example.thrift.learn.client.thriftdatatype.ResultStr;
-import org.example.thrift.learn.client.thriftdatatype.ThriftResult;
+import org.example.thrift.learning.client.thriftdatatype.ResultInt;
+import org.example.thrift.learning.client.thriftdatatype.ResultStr;
+import org.example.thrift.learning.client.thriftdatatype.ThriftResult;
 
 /**
  * 服务端要实现Iface接口
